@@ -1,6 +1,10 @@
 package es.fnavarro.mediasync.config;  
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,6 +21,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -51,28 +56,20 @@ public class AppConfig extends WebMvcConfigurationSupport {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		return converter;
 	}  
+	
 
 	@Bean
 	public DataSource dataSource() {
-		DataSource dataSource = getDatasource();
-		return dataSource;
-	}
-
-	private DataSource getDatasource() {
-		String resource = "jdbc/mediasync";
-		Context initContext;
-		try {
-			initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			return (DataSource)envContext.lookup(resource);
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-		return null;
+	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	    dataSource.setDriverClassName("org.h2.Driver");
+	    dataSource.setUrl("jdbc:h2:file:~/mediaDB.db");
+	    dataSource.setUsername("sa");
+	    dataSource.setPassword("");
+	    return dataSource;
 	}
 
 	@Bean
-	public DataSourceTransactionManager transactionManager() {
+	public DataSourceTransactionManager transactionManager() throws Exception {
 		return new DataSourceTransactionManager(dataSource());
 	}
 
