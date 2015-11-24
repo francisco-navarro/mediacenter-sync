@@ -26,7 +26,7 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
+        sessionFactory.setTypeAliasesPackage("es.fnavarro.mediasync.resources");
         sessionFactory.setMapperLocations(resourcePatternResolver.getResources("classpath:es/fnavarro/mediasync/mapper/*Mapper.xml"));
 		
         return sessionFactory.getObject();
