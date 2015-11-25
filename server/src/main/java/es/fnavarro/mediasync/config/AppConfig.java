@@ -19,9 +19,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import es.fnavarro.mediasync.controllers.BaseController;
+import es.fnavarro.mediasync.services.BaseService;
 
 @Configuration
-@ComponentScan(basePackageClasses = {BaseController.class}) 
+@ComponentScan(basePackageClasses = {BaseController.class, BaseService.class}) 
 
 
 @EnableWebMvc
