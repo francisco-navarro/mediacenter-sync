@@ -53,7 +53,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
 	public DataSource dataSource() {
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 	    dataSource.setDriverClassName("org.h2.Driver");
-	    dataSource.setUrl("jdbc:h2:file:~/mediaDB.db");
+	    dataSource.setUrl("jdbc:h2:file:~/mediaDB");
 	    dataSource.setUsername("sa");
 	    dataSource.setPassword("");
 	    return dataSource;
@@ -68,8 +68,8 @@ public class AppConfig extends WebMvcConfigurationSupport {
 	public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setTypeAliasesPackage("es.sugarsoft.commodities.resources");
-		sessionFactory.setMapperLocations(resourcePatternResolver.getResources("classpath:es/sugarsoft/commodities/resources/persistence/*Mapper.xml"));
+        sessionFactory.setTypeAliasesPackage("es.fnavarro.mediasync.resources");
+        sessionFactory.setMapperLocations(resourcePatternResolver.getResources("classpath:es/fnavarro/mediasync/mapper/*Mapper.xml"));
 		return sessionFactory;
 	}
 
