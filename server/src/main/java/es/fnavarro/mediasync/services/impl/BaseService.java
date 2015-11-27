@@ -1,4 +1,4 @@
-package es.fnavarro.mediasync.services;
+package es.fnavarro.mediasync.services.impl;
 
 import org.apache.log4j.Logger;
 

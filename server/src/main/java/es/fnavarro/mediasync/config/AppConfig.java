@@ -5,9 +5,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -19,12 +19,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import es.fnavarro.mediasync.controllers.BaseController;
-import es.fnavarro.mediasync.services.BaseService;
-
-@Configuration
-@ComponentScan(basePackageClasses = {BaseController.class, BaseService.class}) 
+import es.fnavarro.mediasync.mappers.MapperBase;
+import es.fnavarro.mediasync.services.impl.BaseService;
 
 
+@MapperScan(basePackageClasses = { MapperBase.class } )
+@ComponentScan(basePackageClasses = {BaseController.class, BaseService.class})
 @EnableWebMvc
 public class AppConfig extends WebMvcConfigurationSupport {
 	
@@ -69,7 +69,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
 	public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-        sessionFactory.setTypeAliasesPackage("es.fnavarro.mediasync.resources");
+        sessionFactory.setTypeAliasesPackage("es.fnavarro.mediasync.domain");
         sessionFactory.setMapperLocations(resourcePatternResolver.getResources("classpath:es/fnavarro/mediasync/mapper/*Mapper.xml"));
 		return sessionFactory;
 	}

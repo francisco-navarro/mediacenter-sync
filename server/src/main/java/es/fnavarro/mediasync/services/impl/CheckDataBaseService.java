@@ -1,4 +1,4 @@
-package es.fnavarro.mediasync.services;
+package es.fnavarro.mediasync.services.impl;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -14,8 +14,10 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.fnavarro.mediasync.services.ICheckDataBaseService;
+
 @Service("checkDataBaseService")
-public class CheckDataBaseService extends BaseService{
+public class CheckDataBaseService extends BaseService implements ICheckDataBaseService {
 
 	private static final String TABLES[]  = { "CONFIG", "FILES" };
 
@@ -25,11 +27,12 @@ public class CheckDataBaseService extends BaseService{
 	private Connection connection;
 
 	@Autowired
+	@Override
 	public void checkIfExists(DataSource datasource){
 		
 		try{
 			connection = datasource.getConnection();
-			metaData = connection.getMetaData();			
+			metaData = connection.getMetaData();
 			for(String table : TABLES ){
 				checkOrCreateTable(table);
 			}
