@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service("checkDataBaseService")
 public class CheckDataBaseService extends BaseService{
 
-	private static final String TABLES[]  = { "config", "files" };
+	private static final String TABLES[]  = { "CONFIG", "FILES" };
 
 	private static final String SQL_PATH = "sql/";
 
