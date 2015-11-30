@@ -25,8 +25,13 @@ public class FileService implements IFileService {
 	}
 
 	@Override
-	public List<File> list() {
-		return fileMapper.list();
+	public List<File> list(String status) {
+		return fileMapper.list(status);
+	}
+
+	@Override
+	public void changeStatus(long id, String status) {
+		fileMapper.changeStatus(id,status);
 	}
 	
 

@@ -8,6 +8,8 @@ public interface IFileService {
 
 	void add(File file);
 
-	List<File> list();
+	List<File> list(String status);
+
+	void changeStatus(long id, String status);
 
 }

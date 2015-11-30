@@ -10,6 +10,8 @@ public interface FileMapper extends MapperBase {
 
 	void add(@Param("file") File file);
 
-	List<File> list();
+	List<File> list(@Param("status") String status );
+
+	void changeStatus(@Param("id")long id, @Param("status") String status);
 
 }

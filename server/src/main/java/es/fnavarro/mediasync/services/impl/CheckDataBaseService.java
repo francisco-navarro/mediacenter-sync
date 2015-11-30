@@ -92,7 +92,7 @@ public class CheckDataBaseService extends BaseService implements ICheckDataBaseS
 	}
 
 	private String getSqlResource(String table) throws Exception{
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(SQL_PATH + table + ".sql");
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream(SQL_PATH + table.toLowerCase() + ".sql");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 		StringBuilder builder = new StringBuilder();
 		

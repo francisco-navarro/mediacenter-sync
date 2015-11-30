@@ -5,12 +5,18 @@
 
 	<select id="list" parameterType="map" resultType="File">
 		SELECT * FROM FILES
-			WHERE SAVED = 0 OR DOWNLOADED = 0
+			WHERE STATUS = #{status}
 	</select>
 	
 	<insert id="add" parameterType="map">
-		INSERT INTO FILES (NAME, PATH, SIZE, SAVED, DOWNLOADED, DATE_CREATED)
-		   VALUES(#{file.name}, #{file.path} , #{file.path}, 0, 0, CURRENT_TIMESTAMP)
+		INSERT INTO FILES (NAME, PATH, SIZE, SAVED, DISCARDED, DATE_CREATED, STATUS)
+		   VALUES(#{file.name}, #{file.path} , #{file.size}, 0, 0, CURRENT_TIMESTAMP, 'PENDING')
 	</insert>
+	
+	<update id="changeStatus" parameterType="map">
+		UPDATE FILES
+			SET STATUS = #{status}
+		WHERE ID=#{id}	
+	</update>
 
 </mapper>

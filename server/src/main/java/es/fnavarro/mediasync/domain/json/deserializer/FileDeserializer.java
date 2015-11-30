@@ -19,9 +19,14 @@ public class FileDeserializer extends JsonDeserializer<File>{
 		final JsonNode root = json.getCodec().readTree(json);
 		File file = new File();
 		
-		file.setName(root.get("name").asText());
-		file.setPath(root.get("path").asText());
-		file.setSize(root.get("size").asLong());
+		if(root.get("name")!=null){
+			file.setName(root.get("name").asText());
+			file.setPath(root.get("path").asText());
+			file.setSize(root.get("size").asLong());
+		}
+		if(root.get("status")!=null ){
+			file.setStatus(root.get("status").asText());
+		}
 		return file;
 	}
 
