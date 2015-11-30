@@ -5,11 +5,12 @@
 
 	<select id="list" parameterType="map" resultType="File">
 		SELECT * FROM FILES
+			WHERE SAVED = 0 OR DOWNLOADED = 0
 	</select>
 	
 	<insert id="add" parameterType="map">
-		INSERT INTO FILES (NAME, PATH, SIZE)
-		   VALUES(#{file.name}, #{file.path} , #{file.path})
+		INSERT INTO FILES (NAME, PATH, SIZE, SAVED, DOWNLOADED, DATE_CREATED)
+		   VALUES(#{file.name}, #{file.path} , #{file.path}, 0, 0, CURRENT_TIMESTAMP)
 	</insert>
 
 </mapper>
