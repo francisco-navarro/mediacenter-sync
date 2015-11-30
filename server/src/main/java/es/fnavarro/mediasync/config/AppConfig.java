@@ -41,6 +41,7 @@ public class AppConfig extends WebMvcConfigurationSupport {
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.add(converter());
 		addDefaultHttpMessageConverters(converters);
+		
 	}
 
 	@Bean

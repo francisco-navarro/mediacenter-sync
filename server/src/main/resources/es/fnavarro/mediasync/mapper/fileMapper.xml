@@ -3,4 +3,13 @@
 
 <mapper namespace="es.fnavarro.mediasync.mappers.FileMapper">
 
+	<select id="list" parameterType="map" resultType="File">
+		SELECT * FROM FILES
+	</select>
+	
+	<insert id="add" parameterType="map">
+		INSERT INTO FILES (NAME, PATH, SIZE)
+		   VALUES(#{file.name}, #{file.path} , #{file.path})
+	</insert>
+
 </mapper>
