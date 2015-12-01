@@ -5,7 +5,9 @@
 
 	<select id="list" parameterType="map" resultType="File">
 		SELECT * FROM FILES
-			WHERE STATUS = #{status}
+			<if test="status!=null">
+					WHERE STATUS = #{status}
+			</if>					
 	</select>
 	
 	<insert id="add" parameterType="map">

@@ -28,7 +28,7 @@ public class FileController {
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public List<File> list(HttpServletRequest request) {	
-		String status = request.getParameter("status").toUpperCase();
+		String status = request.getParameter("status");
 		return fileService.list(status);
 	}
 	
