@@ -2,6 +2,7 @@
 'use strict';
 
 var express = require('express');
+var proxy = require('express-http-proxy');
 var app = express();
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
@@ -42,6 +43,16 @@ switch (environment){
         app.use('/app/*', function(req, res, next) {
             four0four.send404(req, res);
         });
+        app.use('/',function(){
+
+        });
+        app.use('/mediacenter/*', proxy('http://localhost ' , {
+          forwardPath: function(req, res) {
+            console.log(require('url').parse('/'+ req.url).path);
+            return require('url').parse('/'+ req.url).path;
+          },
+          port: 8080
+        }));
         // Any deep link calls should return index.html
         app.use('/*', express.static('./src/client/index.html'));
         break;

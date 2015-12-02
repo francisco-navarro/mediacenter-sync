@@ -1,17 +1,25 @@
-<section class="mainbar">
-    <section class="matter">
-        <div class="container">
-            <div class="row">
-                <div class="widget wviolet">
-                    <div ht-widget-header title="{{vm.title}}"></div>
-                    <div class="widget-content user">
-                        MASTER WORKS
-                    </div>
-                    <div class="widget-foot">
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</section>
+<div>
+    
+    <h2>Files list</h2>
+
+    <div >
+    	<!-- <table border="1">
+    		<thead>
+    			<td>id</td>
+    			<td>name</td>
+    			<td>path</td>
+    			<td>size</td>
+    		</thead>
+    		<tr ng-repeat="file in vm.files">
+    			<td>{{file.id}}</td>
+    			<td>{{file.name }}</td>
+    			<td>{{file.path}}</td>
+    			<td>{{file.size}}</td>
+    		</tr>
+		</table> -->
+
+		<table tr-ng-grid="" items="vm.files" fields="['name','path','size']" enable-filtering="false"></table>
+
+    </div>
+
+</div>

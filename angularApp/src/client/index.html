@@ -16,6 +16,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="/bower_components/tr-ng-grid/trNgGrid.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -27,11 +28,12 @@
 </head>
 <body>
 
-    <div>
-        <div ng-include="'app/layout/sidebar.html'"></div>
+    <div ng-include="'app/layout/header.html'"></div>
+    <div class="app-view">
+        <div class="sidebar" ng-include="'app/layout/sidebar.html'"></div>
         <div  class="main-panel">
             <!-- Con el ui-view carga lo configurado en el route -->
-            <div ui-view></div>
+            <div ui-view class="main-view"></div>
         </div>
     </div>
 
@@ -45,6 +47,7 @@
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/bower_components/toastr/toastr.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/tr-ng-grid/trNgGrid.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -58,7 +61,6 @@
     <script src="/src/client/app/core/core.module.js"></script>
     <script src="/src/client/app/files/files.module.js"></script>
     <script src="/src/client/app/layout/layout.module.js"></script>
-    <script src="/src/client/app/widgets/widgets.module.js"></script>
     <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
     <script src="/src/client/app/blocks/exception/exception.js"></script>
     <script src="/src/client/app/blocks/logger/logger.js"></script>
@@ -71,6 +73,7 @@
     <script src="/src/client/app/core/dataservice.js"></script>
     <script src="/src/client/app/files/files.controller.js"></script>
     <script src="/src/client/app/files/files.route.js"></script>
+    <script src="/src/client/app/files/files.service.js"></script>
     <script src="/src/client/app/layout/sidebar.controller.js"></script>
     <!-- endinject -->
 

@@ -5,15 +5,23 @@
         .module('app.files')
         .controller('FilesController', FilesController);
 
-    FilesController.$inject = ['logger'];
+    FilesController.$inject = ['logger', 'FilesService'];
     /* @ngInject */
-    function FilesController(logger) {
+    function FilesController(logger, FilesService) {
         var vm = this;
 
         init();
 
         function init() {
-            logger.info('Files controller loaded');
+            FilesService.find()
+                .then(function(data) {
+                        logger.info('Loaded ' + data.length + ' items.');
+                        vm.files = data;
+                    },
+                    // On Error
+                    function() {
+                        logger.error('Error loading files');
+                    });
         }
     }
 })();
