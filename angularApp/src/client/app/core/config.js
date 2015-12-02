@@ -13,8 +13,8 @@
     }
 
     var config = {
-        appErrorPrefix: '[mediaserver Error] ',
-        appTitle: 'mediaserver'
+        appErrorPrefix: '[Mediaserver Error] ',
+        appTitle: 'Mediaserver Sync App'
     };
 
     core.value('config', config);

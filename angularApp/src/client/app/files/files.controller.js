@@ -1,19 +1,19 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('app.files')
-    .controller('FilesController', DashboardController);
+    angular
+        .module('app.files')
+        .controller('FilesController', FilesController);
 
-  DashboardController.$inject = ['logger'];
-  /* @ngInject */
-  function DashboardController(logger) {
-    var vm = this;
+    FilesController.$inject = ['logger'];
+    /* @ngInject */
+    function FilesController(logger) {
+        var vm = this;
 
-    init();
+        init();
 
-    function init() {
-      logger.info('Files controller loaded');
+        function init() {
+            logger.info('Files controller loaded');
+        }
     }
-  }
 })();

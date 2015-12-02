@@ -16,13 +16,13 @@
             {
                 state: 'files',
                 config: {
-                    url: '/files',
+                    url: '/',
                     templateUrl: 'app/files/master.html',
                     controller: 'FilesController',
                     controllerAs: 'vm',
                     title: 'Files',
                     settings: {
-                        nav: 2,
+                        nav: 1,
                         content: '<i class="fa fa-lock"></i> Files'
                     }
                 }
