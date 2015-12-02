@@ -18,7 +18,26 @@
     		</tr>
 		</table> -->
 
-		<table tr-ng-grid="" items="vm.files" fields="['name','path','size']" enable-filtering="false"></table>
+		<table tr-ng-grid="" items="vm.files" fields="['id','name','size']" enable-filtering="false">
+		<thead>
+            <tr>
+                <th>
+                    <div class="tr-ng-title">
+                        Actions
+                    </div>
+                </th>
+            </tr>
+        </thead>
+			 <tbody>
+		        <tr>
+		            <td>
+		                <button class="btn btn-default" ng-click="vm.save(gridItem)">
+		                    Console {{gridDisplayItem.id}}
+		                </button>
+		            </td>
+		        </tr>
+		    </tbody>			
+		</table>
 
     </div>
 

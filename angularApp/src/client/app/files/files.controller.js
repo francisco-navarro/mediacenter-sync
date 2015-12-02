@@ -9,6 +9,7 @@
     /* @ngInject */
     function FilesController(logger, FilesService) {
         var vm = this;
+        vm.save = save;
 
         init();
 
@@ -22,6 +23,10 @@
                     function() {
                         logger.error('Error loading files');
                     });
+        }
+
+        function save(item){
+            console.log(item);
         }
     }
 })();
