@@ -1,30 +1,32 @@
 <div>
-    
     <h2>Files list</h2>
-
-    <div >
-
-		<table tr-ng-grid="" items="vm.files" fields="['id','name','size']" enable-filtering="false">
-		<thead>
-            <tr>
-                <th>
-                    <div class="tr-ng-title">
-                        Actions
-                    </div>
-                </th>
-            </tr>
-        </thead>
-			 <tbody>
-		        <tr>
-		            <td>
-		                <button class="btn btn-default" ng-click="vm.save(gridItem)">
-		                    Console {{gridDisplayItem.id}}
-		                </button>
-		            </td>
-		        </tr>
-		    </tbody>			
-		</table>
-
+    <div>
+    	<select class="selectpicker" ng-model="vm.statusFilter" ng-change="vm.find()">
+		    <option value="">ALL</option>
+		    <option>PENDING</option>
+		    <option>DOWNLOAD</option>
+		    <option>DOWNLOADING</option>
+		    <option>DISCARDED</option>
+		  </select>
     </div>
-
+    <div ng-show="vm.files.length===0">
+    	No results.
+    </div>
+    <div ng-show="vm.files.length>0">
+        <table class="filesGrid" tr-ng-grid="" items="vm.files" fields="['name','status','size']" enable-filtering="false">
+            <!-- <thead><tr><th><div class="tr-ng-title">Actions</div></th></tr></thead> -->
+            <tbody>
+                <tr>
+                    <td id="actions" >
+                        <button class="btn btn-default" ng-click="vm.save(gridItem)" ng-show="vm.statusFilter!==''">
+                            Save
+                        </button>                        
+                        <button class="btn btn-default" ng-click="vm.discard(gridItem)" ng-show="vm.statusFilter!==''">
+                            Discard
+                        </button>                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
