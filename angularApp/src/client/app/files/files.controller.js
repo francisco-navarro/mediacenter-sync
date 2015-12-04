@@ -14,7 +14,11 @@
         init();
 
         function init() {
-            FilesService.find()
+            find();
+        }
+
+        function find(status) {
+            FilesService.find(status)
                 .then(function(data) {
                         logger.info('Loaded ' + data.length + ' items.');
                         vm.files = data;
@@ -25,8 +29,12 @@
                     });
         }
 
-        function save(item){
-            console.log(item);
+        function download(item) {
+            FilesService.download(item);
+        }
+
+        function discard(item) {
+            FilesService.discard(item);
         }
     }
 })();

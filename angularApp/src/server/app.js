@@ -46,13 +46,13 @@ switch (environment){
         app.use('/',function(){
 
         });
-        app.use('/mediacenter/*', proxy('http://localhost ' , {
+        /*app.use('/mediacenter/*', proxy('http://localhost ' , {
           forwardPath: function(req, res) {
             console.log(require('url').parse('/'+ req.url).path);
             return require('url').parse('/'+ req.url).path;
           },
           port: 8080
-        }));
+        }));*/
         // Any deep link calls should return index.html
         app.use('/*', express.static('./src/client/index.html'));
         break;
