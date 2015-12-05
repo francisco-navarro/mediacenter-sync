@@ -9,14 +9,14 @@
     /* @ngInject */
     function FilesService($http) {
 
-        var host = 'http://pakonatsrv.mooo.com:8080/';
-        host = 'http://localhost:8080/';
-        var endpoint = 'mediacenter/files/';
+        var host = 'http://pakonatsrv.mooo.com/mediacenter/';
+        var endpoint = 'api/files/';
 
         return {
             find: find,
             save: save,
-            discard: discard
+            discard: discard,
+            reset: reset
         };
 
         function find(status) {
@@ -33,14 +33,23 @@
         }
 
         function save(item) {
+            item.status = '...';
             return $http.put(host + endpoint + item.id, {
                 status: 'DOWNLOAD'
             });
         }
 
         function discard(item) {
+            item.status = '...';
             return $http.put(host + endpoint + item.id, {
-                status: 'DISCARD'
+                status: 'DISCARDED'
+            });
+        }
+
+        function reset(item) {
+            item.status = '...';
+            return $http.put(host + endpoint + item.id, {
+                status: 'PENDING'
             });
         }
     }

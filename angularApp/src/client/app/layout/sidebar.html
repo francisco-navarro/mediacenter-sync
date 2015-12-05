@@ -1,8 +1,13 @@
 ﻿<div ng-controller="SidebarController as vm">
-    <div>MENU</div>
+    <div class="heading">Menu</div>
     <ul class="navi">
-        <li class="nlightblue fade-selection-animation" ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
+        <li class="" ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
             <a ui-sref="{{r.name}}" ng-bind-html="r.settings.content"></a>
+        </li>
+        <li class="">
+            <a href="#">
+            	Source &amp; download
+            </a>
         </li>
     </ul>
 </div>

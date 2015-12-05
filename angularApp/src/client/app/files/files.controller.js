@@ -5,13 +5,14 @@
         .module('app.files')
         .controller('FilesController', FilesController);
 
-    FilesController.$inject = ['logger', 'FilesService'];
+    FilesController.$inject = ['logger', 'FilesService', '$timeout'];
     /* @ngInject */
-    function FilesController(logger, FilesService) {
+    function FilesController(logger, FilesService, $timeout) {
         var vm = this;
         vm.save = save;
         vm.discard = discard;
         vm.find = find;
+        vm.reset = reset;
 
         init();
 
@@ -39,6 +40,11 @@
 
         function discard(item) {
             FilesService.discard(item)
+                .then(find());
+        }
+
+        function reset(item) {
+            FilesService.reset(item)
                 .then(find());
         }
     }

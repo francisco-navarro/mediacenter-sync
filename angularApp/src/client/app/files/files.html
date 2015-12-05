@@ -1,0 +1,41 @@
+<div>
+    <div class="heading">Files list</div>    
+</div>
+<div class="content-table">
+
+    <div>
+        <select class="selectpicker" ng-model="vm.statusFilter" ng-change="vm.find()">
+            <option value="">ALL</option>
+            <option>PENDING</option>
+            <option>DOWNLOAD</option>
+            <option>DOWNLOADING</option>
+            <option>DISCARDED</option>
+          </select>
+    </div>
+
+    <!-- TABLES -->
+
+    <div ng-show="vm.files.length===0">
+    	No results.
+    </div>
+    <div ng-show="vm.files.length>0">
+        <table class="filesGrid" tr-ng-grid="" items="vm.files" fields="['name','status','size']" enable-filtering="false"  selection-mode="None">
+            <!-- <thead><tr><th><div class="tr-ng-title">Actions</div></th></tr></thead> -->
+            <tbody>
+                <tr>
+                    <td id="actions" >
+                        <button class="btn btn-default" ng-click="vm.save(gridItem)" ng-show="vm.statusFilter!==''">
+                            Save
+                        </button>                        
+                        <button class="btn btn-default" ng-click="vm.discard(gridItem)" ng-show="vm.statusFilter!==''">
+                            Discard
+                        </button>      
+                        <button class="btn btn-default" ng-click="vm.reset(gridItem)" ng-show="vm.statusFilter===''">
+                            Pending
+                        </button>                   
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
