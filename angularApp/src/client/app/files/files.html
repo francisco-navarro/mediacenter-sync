@@ -19,11 +19,19 @@
     	No results.
     </div>
     <div ng-show="vm.files.length>0">
-        <table class="filesGrid" tr-ng-grid="" items="vm.files" fields="['name','status','size']" enable-filtering="false"  selection-mode="None">
-            <!-- <thead><tr><th><div class="tr-ng-title">Actions</div></th></tr></thead> -->
+        <table class="filesGrid" tr-ng-grid="" items="vm.files"  enable-filtering="false"  selection-mode="None">
+            <thead>
+                <tr>
+                    <th field-name="name"></th>
+                    <th field-name="status"></th>
+                    <th field-name="size" display-name="size" display-format="fileSizeFilter:gridDisplayItem.size">
+                    <th></th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
                     <td id="actions" >
+                        <!-- <div>{{gridDisplayItem.size | fileSizeFilter}}</div> -->
                         <button class="btn btn-default" ng-click="vm.save(gridItem)" ng-show="vm.statusFilter!==''">
                             Save
                         </button>                        
