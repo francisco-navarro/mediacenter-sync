@@ -22,9 +22,9 @@
         };
 
         this.$get = RouterHelper;
-        RouterHelper.$inject = ['$location', '$rootScope', '$state', 'logger'];
+        RouterHelper.$inject = ['$location', '$rootScope', '$state'];
         /* @ngInject */
-        function RouterHelper($location, $rootScope, $state, logger) {
+        function RouterHelper($location, $rootScope, $state) {
             var handlingStateChangeError = false;
             var hasOtherwise = false;
             var stateCounts = {
@@ -68,12 +68,12 @@
                         stateCounts.errors++;
                         handlingStateChangeError = true;
                         var destination = (toState &&
-                            (toState.title || toState.name || toState.loadedTemplateUrl)) ||
+                                (toState.title || toState.name || toState.loadedTemplateUrl)) ||
                             'unknown target';
                         var msg = 'Error routing to ' + destination + '. ' +
                             (error.data || '') + '. <br/>' + (error.statusText || '') +
                             ': ' + (error.status || '');
-                        logger.warning(msg, [toState]);
+                        console.warning(msg, [toState]);
                         $location.path('/');
                     }
                 );
@@ -84,7 +84,9 @@
                 updateDocTitle();
             }
 
-            function getStates() { return $state.get(); }
+            function getStates() {
+                return $state.get();
+            }
 
             function updateDocTitle() {
                 $rootScope.$on('$stateChangeSuccess',

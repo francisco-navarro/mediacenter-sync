@@ -5,15 +5,15 @@
         .module('app.configuration')
         .controller('ConfigurationController', ConfigurationController);
 
-    ConfigurationController.$inject = ['logger'];
+    ConfigurationController.$inject = [];
     /* @ngInject */
-    function ConfigurationController(logger) {
+    function ConfigurationController() {
         var vm = this;
 
         init();
 
         function init() {
-            logger.info('ConfigurationController loaded');
+            console.info('ConfigurationController loaded');
         }
     }
 })();

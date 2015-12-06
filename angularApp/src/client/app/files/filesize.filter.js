@@ -3,28 +3,27 @@
 
     angular
         .module('app.files')
-        .filter('fileSizeFilter', [
-            'numberFilter',
+        .filter('fileSizeFilter', fileSizeFilter);
 
-            function fileSizeFilter(numberFilter) {
+    fileSizeFilter.$inject = ['numberFilter'];
+    /* @ngInject */
+    function fileSizeFilter(numberFilter) {
 
-                var units = ['B', 'KB', 'MB', 'GB'];
-                return function(input) {
+        var units = ['B', 'KB', 'MB', 'GB'];
+        return function(input) {
 
-                    if (input) {
-                        return divide(input, 0);
-                    }
-
-                };
-
-                function divide(number, base) {
-                    if (number < 1024) {
-                        return parseInt(number) + ' ' + units[base];
-                    }
-                    return divide(parseInt(number) / 1024, base + 1);
-                }
-
-
+            if (input) {
+                return divide(input, 0);
             }
-        ]);
+
+        };
+
+        function divide(number, base) {
+            if (number < 1024) {
+                return parseInt(number) + ' ' + units[base];
+            }
+            return divide(parseInt(number) / 1024, base + 1);
+        }
+    }
+
 }());
