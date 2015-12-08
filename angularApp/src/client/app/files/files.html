@@ -19,12 +19,12 @@
     	No results.
     </div>
     <div ng-show="vm.files.length>0">
-        <table class="filesGrid" tr-ng-grid="" items="vm.files"  enable-filtering="false"  selection-mode="None" page-items="50">
+        <table class="filesGrid" tr-ng-grid="" items="vm.files"  enable-filtering="false"  selection-mode="None" page-items="20">
             <thead>
                 <tr>
-                    <th field-name="name"></th>
+                    <th field-name="name" display-format="limitTo:60"></th>
                     <th field-name="status"></th>
-                    <th field-name="size" display-name="size" display-format="fileSizeFilter:gridDisplayItem.size">
+                    <th field-name="size" display-format="fileSizeFilter:gridDisplayItem.size">
                     <th></th>
                 </tr>
             </thead>
