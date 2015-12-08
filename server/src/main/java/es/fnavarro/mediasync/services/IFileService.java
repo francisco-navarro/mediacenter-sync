@@ -12,4 +12,6 @@ public interface IFileService {
 
 	void changeStatus(long id, String status);
 
+	void changeName(long id, String name);
+
 }

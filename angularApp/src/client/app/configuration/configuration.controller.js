@@ -13,7 +13,7 @@
         init();
 
         function init() {
-            console.info('ConfigurationController loaded');
+            vm.authToken = undefined;
         }
     }
 })();

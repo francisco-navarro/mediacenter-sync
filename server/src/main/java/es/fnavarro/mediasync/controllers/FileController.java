@@ -40,6 +40,7 @@ public class FileController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
 	public void changeStatus( @PathVariable("id") long id,
 			@RequestBody File file) {	
+		fileService.changeName(id, file.getName());
 		fileService.changeStatus(id, file.getStatus().toUpperCase());
 	}
 

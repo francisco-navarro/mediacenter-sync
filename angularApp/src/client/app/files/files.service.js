@@ -9,7 +9,7 @@
     /* @ngInject */
     function FilesService($http) {
 
-        var host = 'http://pakonatsrv.mooo.com/mediacenter/';
+        var host = '';
         var endpoint = 'api/files/';
 
         return {

@@ -33,6 +33,11 @@ public class FileService implements IFileService {
 	public void changeStatus(long id, String status) {
 		fileMapper.changeStatus(id,status);
 	}
+
+	@Override
+	public void changeName(long id, String name) {
+		
+	}
 	
 
 }
