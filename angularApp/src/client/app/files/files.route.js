@@ -16,7 +16,7 @@
             {
                 state: 'files',
                 config: {
-                    url: '/',
+                    url: '/#',
                     templateUrl: 'app/files/files.html',
                     controller: 'FilesController',
                     controllerAs: 'vm',

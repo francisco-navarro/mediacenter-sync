@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import es.fnavarro.mediasync.domain.File;
 import es.fnavarro.mediasync.mappers.FileMapper;
 import es.fnavarro.mediasync.services.IFileService;
 
+@Transactional
 @Service("fileService")
 public class FileService implements IFileService {
 	
