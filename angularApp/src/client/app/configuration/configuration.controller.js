@@ -5,12 +5,12 @@
         .module('app.configuration')
         .controller('ConfigurationController', ConfigurationController);
 
-    ConfigurationController.$inject = ['$scope', 'AuthService', 'toastr'];
+    ConfigurationController.$inject = ['ConfigurationService', 'toastr'];
     /* @ngInject */
-    function ConfigurationController($scope, AuthService, toastr) {
+    function ConfigurationController(ConfigurationService, toastr) {
 
         var vm = this;
-        vm.login = login;
+        vm.loadConfig = loadConfig;
 
         init();
 
@@ -18,14 +18,10 @@
             vm.authToken = undefined;
         }
 
-        function login() {
-            AuthService.login(vm.password)
-                .then(function(token) {
-                    vm.authToken = token;
-                    toastr.info('Login sucessfull');
-                }, function() {
-                    //Error
-                    toastr.error('Login error');
+        function loadConfig() {
+            ConfigurationService.get(vm.authToken)
+                .then(function(data) {
+                    vm.config = data;
                 });
         }
     }

@@ -3,10 +3,10 @@
 </div>
 <div class="content-table">
 
-    <auth-box token="vm.authToken"/>
+    <auth-box token="vm.authToken"></auth-box>
 
-    <div ng-show="vm.authToken>=0">
-            
+    <div ng-if="vm.authToken" ng-init="vm.loadConfig()">
+        {{vm.config}}
     </div>
 
 </div>
