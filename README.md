@@ -13,7 +13,7 @@ GET /api/files
 At the moment only can be filtered by : status=XXXXX
 
 ### Login
-PUT /api/auth/:password:
+PUT /api/authSession/:password:
 
 ### List configuration
 GET /api/configuration/

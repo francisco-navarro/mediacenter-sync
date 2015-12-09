@@ -5,9 +5,9 @@
         .module('app.configuration')
         .controller('ConfigurationController', ConfigurationController);
 
-    ConfigurationController.$inject = ['AuthService', 'toastr'];
+    ConfigurationController.$inject = ['$scope', 'AuthService', 'toastr'];
     /* @ngInject */
-    function ConfigurationController(AuthService, toastr) {
+    function ConfigurationController($scope, AuthService, toastr) {
 
         var vm = this;
         vm.login = login;
