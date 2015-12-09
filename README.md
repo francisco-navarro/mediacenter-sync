@@ -20,3 +20,10 @@ GET /api/configuration/
 {
 	"token" : "6982772"
 }
+
+Response:
+{
+	"destinationIP": "",
+	"username": "",
+	"password": ""
+}
