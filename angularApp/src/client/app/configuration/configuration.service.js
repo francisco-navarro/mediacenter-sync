@@ -5,8 +5,7 @@
         .module('app.files')
         .factory('ConfigurationService', ConfigurationService);
 
-    ConfigurationService.$inject = ['$http'];
-    /* @ngInject */
+   /* @ngInject */
     function ConfigurationService($http) {
 
         var host = '';

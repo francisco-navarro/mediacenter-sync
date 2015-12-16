@@ -5,7 +5,6 @@
         .module('app.files')
         .directive('authBox', authBox);
 
-    authBox.$inject = ['AuthService', 'toastr'];
     /* @ngInject */
     function authBox(AuthService, toastr) {
 
@@ -21,7 +20,7 @@
                 '<input type="password" ng-model="boxPassword" />' +
                 '</div><div class="center">' +
                 '<button class="btn btn-default" ng-click="login()">Login</button></div></div>',
-            link: function(scope, element) {
+            link: function(scope, element, attrs, controller, transcludeFn)  {
                 scope.login = function() {
                     AuthService.login(scope.boxPassword)
                         .then(function(response) {

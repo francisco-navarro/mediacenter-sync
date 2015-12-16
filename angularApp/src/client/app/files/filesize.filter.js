@@ -5,7 +5,6 @@
         .module('app.files')
         .filter('fileSizeFilter', fileSizeFilter);
 
-    fileSizeFilter.$inject = ['numberFilter'];
     /* @ngInject */
     function fileSizeFilter(numberFilter) {
 

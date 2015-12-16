@@ -5,7 +5,6 @@
         .module('app.files')
         .factory('FilesService', FilesService);
 
-    FilesService.$inject = ['$http'];
     /* @ngInject */
     function FilesService($http) {
 

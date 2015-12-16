@@ -5,8 +5,7 @@
         .module('app.files')
         .factory('AuthService', AuthService);
 
-    AuthService.$inject = ['$http', '$q'];
-    /* @ngInject */
+   /* @ngInject */
     function AuthService($http, $q) {
 
         var host = '';

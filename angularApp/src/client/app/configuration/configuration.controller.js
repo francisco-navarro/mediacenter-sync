@@ -5,7 +5,6 @@
         .module('app.configuration')
         .controller('ConfigurationController', ConfigurationController);
 
-    ConfigurationController.$inject = ['ConfigurationService', 'toastr'];
     /* @ngInject */
     function ConfigurationController(ConfigurationService, toastr) {
 
