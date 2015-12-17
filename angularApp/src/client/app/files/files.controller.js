@@ -5,7 +5,6 @@
         .module('app.files')
         .controller('FilesController', FilesController);
 
-    FilesController.$inject = ['FilesService', '$timeout'];
     /* @ngInject */
     function FilesController(FilesService, $timeout) {
         var vm = this;
