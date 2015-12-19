@@ -32,19 +32,11 @@
                     });
         }
 
-        function save(item) {
-            FilesService.save(item)
+        function save(item, action) {
+            FilesService[action](item)
                 .then(find());
         }
 
-        function discard(item) {
-            FilesService.discard(item)
-                .then(find());
-        }
-
-        function reset(item) {
-            FilesService.reset(item)
-                .then(find());
-        }
+       
     }
 })();
