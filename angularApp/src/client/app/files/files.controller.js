@@ -9,9 +9,6 @@
     function FilesController(FilesService, $timeout) {
         var vm = this;
         vm.save = save;
-        vm.discard = discard;
-        vm.find = find;
-        vm.reset = reset;
 
         init();
 

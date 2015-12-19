@@ -32,13 +32,13 @@
                 <tr>
                     <td id="actions" >
                         <!-- <div>{{gridDisplayItem.size | fileSizeFilter}}</div> -->
-                        <button class="btn btn-default" ng-click="vm.save(gridItem)" ng-show="vm.statusFilter!==''">
+                        <button class="btn btn-default" ng-click="vm.save(gridItem, 'save')" ng-show="vm.statusFilter!==''">
                             Save
                         </button>                        
-                        <button class="btn btn-default" ng-click="vm.discard(gridItem)" ng-show="vm.statusFilter!==''">
+                        <button class="btn btn-default" ng-click="vm.save(gridItem, 'discard')" ng-show="vm.statusFilter!==''">
                             Discard
                         </button>      
-                        <button class="btn btn-default" ng-click="vm.reset(gridItem)" ng-show="vm.statusFilter===''">
+                        <button class="btn btn-default" ng-click="vm.save(gridItem, 'reset')" ng-show="vm.statusFilter===''">
                             Pending
                         </button>                   
                     </td>
