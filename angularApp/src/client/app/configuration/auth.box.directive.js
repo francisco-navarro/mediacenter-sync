@@ -14,10 +14,7 @@
                 token: '='
             },
             transclude: true,
-            template: '<div class="login center" ng-show="!logged"><div class="row"></div>' +
-                '<div>Password</div><div><input type="password" ng-model="boxPassword" />' +
-                '</div><div class="center">' +
-                '<button class="btn btn-default" ng-click="login()">Login</button></div></div>',
+            templateUrl: 'app/configuration/auth.box.template.html',
             link: function(scope, element, attrs, controller, transcludeFn) {
                 scope.login = function() {
                     AuthService.login(scope.boxPassword)

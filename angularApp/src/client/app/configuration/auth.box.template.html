@@ -1,10 +1,15 @@
-<div class="login center" ng-show="!logged">
-    <div class="row"></div>
-    <div>Password</div>
-    <div>
-        <input type="password" ng-model="boxPassword" />
+<div class="login center">
+	<!-- LOGIN BOX -->
+	<div ng-show="!logged">
+	    <div class="row"></div>
+	    <div>Password</div>
+	    <div>
+	        <input type="password" ng-model="boxPassword" />
+	    </div>
+	    <div class="center">
+	        <button class="btn btn-default" ng-click="login()">Login</button>
+	    </div>
     </div>
-    <div class="center">
-        <button class="btn btn-default" ng-click="login()">Login</button>
-    </div>
+    <div ng-if="logged"  ng-transclude></div>
 </div>
+
