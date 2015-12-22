@@ -6,7 +6,7 @@
         .directive('configBox', configBox);
 
     /* @ngInject */
-    function configBox(ConfigurationService) {
+    function configBox(ConfigurationService, toastr) {
         return {
             restrict: 'AE',
             replace: true,
@@ -14,12 +14,25 @@
                 token: '='
             },
             templateUrl: 'app/configuration/config.box.template.html',
-            link: function(scope, element, attrs, controller, transcludeFn) {
-                ConfigurationService.get(scope.token)
-                    .then(function(values) {
-                        scope.config = values;
-                    });
-            }
+            // link: function(scope, element, attrs, controller, transcludeFn) {
+            // },
+            controller: function($scope) {
+                var vm = this;
+                vm.submit = submit;
+                init();
+
+                function init() {
+                    ConfigurationService.get($scope.token)
+                        .then(function(values) {
+                            vm.config = values;
+                        });
+                }
+
+                function submit() {
+                    ConfigurationService.updateValues(vm.config);
+                }
+            },
+            controllerAs: 'vm'
         };
     }
 })();

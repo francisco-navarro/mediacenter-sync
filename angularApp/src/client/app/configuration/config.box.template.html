@@ -1,14 +1,14 @@
-<div class="configValueBox">
-    <div ng-repeat="elem in config">
+<form class="configValueBox" ng-submit="vm.submit()">
+    <div ng-repeat="elem in vm.config">
         <div>{{elem.id}}</div>
         <div>
-            <input value="{{elem.value}}"></input>
+            <input ng-model="elem.value"></input>
         </div>
     </div>
     <div class="saveButton">
     	<div/>
     	<div>
-        	<button class="btn btn-default">Save</button>
+        	<button class="btn btn-default" type="submit">Save</button>
         </div>
     </div>
-</div>
+</form>
