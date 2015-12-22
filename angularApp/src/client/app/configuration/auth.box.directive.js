@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.files')
+        .module('app.configuration')
         .directive('authBox', authBox);
 
     /* @ngInject */

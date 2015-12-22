@@ -16,12 +16,10 @@
         };
 
         function get(token) {
-
             return $http.get(host + endpoint + '?token=' + token)
                 .then(function(response) {
                     return response.data;
                 });
-
         }
     }
 })();

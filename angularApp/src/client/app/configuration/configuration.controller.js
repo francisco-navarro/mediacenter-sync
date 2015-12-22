@@ -9,7 +9,6 @@
     function ConfigurationController(ConfigurationService, toastr) {
 
         var vm = this;
-        vm.loadConfig = loadConfig;
 
         init();
 
@@ -17,11 +16,5 @@
             vm.authToken = undefined;
         }
 
-        function loadConfig() {
-            ConfigurationService.get(vm.authToken)
-                .then(function(data) {
-                    vm.config = data;
-                });
-        }
     }
 })();
