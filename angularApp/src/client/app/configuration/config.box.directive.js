@@ -13,9 +13,15 @@
             scope: {
                 token: '='
             },
-            template: '<div><div ng-repeat="elem in config>{{elem}}</div></div>',
+            template: '<div class="configValueBox"><div ng-repeat="elem in config">' +
+                '<div>{{elem.id}}</div>' +
+                '<div><input value="{{elem.value}}"></input></div>' +
+                '</div></div>',
             link: function(scope, element, attrs, controller, transcludeFn) {
-                scope.config = ConfigurationService.get(scope.token);
+                ConfigurationService.get(scope.token)
+                    .then(function(values) {
+                        scope.config = values;
+                    });
             }
         };
     }

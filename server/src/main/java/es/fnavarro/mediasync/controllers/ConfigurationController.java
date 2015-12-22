@@ -1,6 +1,7 @@
 package es.fnavarro.mediasync.controllers;
 
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.fnavarro.mediasync.config.AppConfig;
+import es.fnavarro.mediasync.domain.ConfigValue;
 import es.fnavarro.mediasync.domain.Token;
 import es.fnavarro.mediasync.services.impl.SystemPropertiesService;
 
@@ -24,8 +26,8 @@ public class ConfigurationController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public AppConfig get() {
-		return new AppConfig();
+	public List<ConfigValue> get() {
+		return systemPropertiesService.getValues();
 	}
 	
 }

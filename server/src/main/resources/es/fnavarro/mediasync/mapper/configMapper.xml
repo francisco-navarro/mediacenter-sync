@@ -3,4 +3,21 @@
 
 <mapper namespace="es.fnavarro.mediasync.mappers.ConfigMapper">
 
+	<select id="getProperty" parameterType="map" resultType="String">
+		select value
+		from CONFIG
+		where id = #{property}
+	</select>
+	
+	<insert id="updateProperty" parameterType="map">
+		
+	</insert>
+	
+	<update id="insertProperty" parameterType="map">
+		insert into CONFIG
+		(id, value)
+		values		
+		(#{property},#{value})
+	</update>
+	
 </mapper>

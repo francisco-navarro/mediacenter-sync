@@ -1,21 +1,47 @@
 package es.fnavarro.mediasync.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.fnavarro.mediasync.domain.ConfigValue;
 import es.fnavarro.mediasync.mappers.ConfigMapper;
 import es.fnavarro.mediasync.services.ISystemPropertiesService;
 
 @Service("systemPropertiesService")
-public class SystemPropertiesService implements ISystemPropertiesService {
+public class SystemPropertiesService extends BaseService implements ISystemPropertiesService {
 	
 	private ConfigMapper configMapper;
 	
-	private String adminPassword;
-	private String remotePath;
-	private String remoteIp;
-	private String remoteUser;
-	private String remotePassword;
+	String adminPassword;
+	String remotePath;
+	String remoteIp;
+	String remoteUser;
+	String remotePassword;	
+
+	@Autowired
+	public SystemPropertiesService(ConfigMapper configMapper){
+		this.configMapper = configMapper;
+		initProperties();
+	}
+	
+	private void initProperties() {		
+		adminPassword=createIfNotExists("adminPassword");
+		remotePath=createIfNotExists("remotePath");
+		remoteIp=createIfNotExists("remoteIp");
+		remoteUser=createIfNotExists("remoteUser");
+		remotePassword=createIfNotExists("remotePassword");	
+	}
+	
+	private String createIfNotExists(String key){
+		String value= configMapper.getProperty(key);
+		if(value==null){
+			configMapper.insertProperty(key, "");
+		}
+		return value;
+	}
 	
 	public ConfigMapper getConfigMapper() {
 		return configMapper;
@@ -65,11 +91,19 @@ public class SystemPropertiesService implements ISystemPropertiesService {
 		this.remotePassword = remotePassword;
 	}
 
-	@Autowired
-	public SystemPropertiesService(ConfigMapper configMapper){
-		this.configMapper = configMapper;
+	public List<ConfigValue> getValues() {
+		List<ConfigValue> list = new ArrayList<ConfigValue>();
+		try{
+			
+			list.add(new ConfigValue("adminPassword",getAdminPassword()));
+			list.add(new ConfigValue("remotePath", getRemotePath()));
+			list.add(new ConfigValue("remoteIp",getRemoteIp()));
+			list.add(new ConfigValue("remoteUser", getRemoteUser()));
+			list.add(new ConfigValue("remotePassword",getRemotePassword()));	
+			
+		}catch(Exception e){
+			logger.warn("Error fetching properties ",e);
+		}
+		return list;
 	}
-	
-	
-
 }

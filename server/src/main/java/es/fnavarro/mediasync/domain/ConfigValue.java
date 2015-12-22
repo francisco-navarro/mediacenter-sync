@@ -7,6 +7,10 @@ public class ConfigValue implements Serializable{
 	private String id;
 	private String value;
 	
+	public ConfigValue(String id, String value) {
+		this.id = id;
+		this.value=value;
+	}
 	public String getId() {
 		return id;
 	}

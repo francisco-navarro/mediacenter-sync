@@ -36,7 +36,7 @@ public class AuthoritationController {
 	
 	@RequestMapping(value = "/{password}", method = RequestMethod.PUT, produces = "application/json" )
 	public Token login ( @PathVariable("password") String password) throws SystemException{
-		if( systemPropertiesService.getAdminPassword()!= null ){
+		if( !isPasswordEmpty() ){
 			if(systemPropertiesService.getAdminPassword().equals(password)){
 				return newToken();
 			}else{
@@ -46,6 +46,11 @@ public class AuthoritationController {
 			systemPropertiesService.setAdminPassword(password);
 			return newToken();
 		}
+	}
+
+	private boolean isPasswordEmpty() {
+		return !(systemPropertiesService.getAdminPassword()!= null 
+				&& systemPropertiesService.getAdminPassword().length()>0);
 	}
 
 	private Token newToken() {
