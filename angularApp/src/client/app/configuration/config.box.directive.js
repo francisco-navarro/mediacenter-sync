@@ -13,10 +13,7 @@
             scope: {
                 token: '='
             },
-            template: '<div class="configValueBox"><div ng-repeat="elem in config">' +
-                '<div>{{elem.id}}</div>' +
-                '<div><input value="{{elem.value}}"></input></div>' +
-                '</div></div>',
+            templateUrl: 'app/configuration/config.box.template.html',
             link: function(scope, element, attrs, controller, transcludeFn) {
                 ConfigurationService.get(scope.token)
                     .then(function(values) {
