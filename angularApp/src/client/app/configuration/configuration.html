@@ -1,12 +1,10 @@
 <div>
     <div class="heading">Configuration</div>
 </div>
-<div class="content-table">
+<div class="content-table" ng-init="vm.loadConfig()">
 
-    <auth-box token="vm.authToken"></auth-box>
-
-    <div ng-if="vm.authToken" ng-init="vm.loadConfig()">
-        {{vm.config}}
-    </div>
+    <auth-box token="vm.authToken">
+        	{{vm.config}}
+    </auth-box>
 
 </div>

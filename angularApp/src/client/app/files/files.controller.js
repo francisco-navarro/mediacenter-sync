@@ -14,11 +14,13 @@
 
         function init() {
             vm.statusFilter = 'PENDING';
+            vm.statusFilter = undefined;
             find();
         }
 
         function find() {
             FilesService.find(vm.statusFilter)
+                //On sucess
                 .then(function(data) {
                         console.info('Loaded ' + data.length + ' items.');
                         vm.files = data;
@@ -34,6 +36,5 @@
                 .then(find());
         }
 
-       
     }
 })();

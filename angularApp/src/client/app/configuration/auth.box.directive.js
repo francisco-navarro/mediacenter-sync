@@ -6,28 +6,28 @@
         .directive('authBox', authBox);
 
     /* @ngInject */
-    function authBox(AuthService, toastr) {
-
-
+    function authBox(AuthService, toastr) {        
         return {
             restrict: 'AE',
-            replace: true,
+            replace: false,
             scope: {
-                token: '=',
-                loginFn: '&'
+                token: '='
             },
-            template: '<div class="login center" ng-show="!token"><div class="row"></div><div>Password</div><div>' +
-                '<input type="password" ng-model="boxPassword" />' +
+            transclude: true,
+            template: '<div class="login center" ng-show="!logged"><div class="row"></div>' +
+                '<div>Password</div><div><input type="password" ng-model="boxPassword" />' +
                 '</div><div class="center">' +
                 '<button class="btn btn-default" ng-click="login()">Login</button></div></div>',
-            link: function(scope, element, attrs, controller, transcludeFn)  {
+            link: function(scope, element, attrs, controller, transcludeFn) {
                 scope.login = function() {
                     AuthService.login(scope.boxPassword)
                         .then(function(response) {
                             scope.token = response;
+                            scope.logged = true;
                             toastr.info('Login sucessfull');
                         }, function() {
                             //Error
+                            scope.logged = false;
                             toastr.error('Login error');
                         });
                 };
