@@ -1,12 +1,9 @@
 package es.fnavarro.mediasync.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import es.fnavarro.mediasync.domain.json.deserializer.FileDeserializer;
-import es.fnavarro.mediasync.domain.json.serializer.FileSerializer;
 
-//@JsonSerialize(using=FileSerializer.class)
 @JsonDeserialize(using=FileDeserializer.class)
 public class File {
 	

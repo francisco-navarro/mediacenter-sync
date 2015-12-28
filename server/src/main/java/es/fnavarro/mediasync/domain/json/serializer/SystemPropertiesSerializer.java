@@ -10,16 +10,18 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 import es.fnavarro.mediasync.domain.ConfigValue;
-import es.fnavarro.mediasync.domain.File;
+import es.fnavarro.mediasync.domain.SystemProperties;
 
-public class ConfigValueSerializer extends JsonSerializer<ConfigValue> {
+public class SystemPropertiesSerializer extends JsonSerializer<SystemProperties> {
 
 
 	@Override
-	public void serialize(ConfigValue value, JsonGenerator jgen, SerializerProvider provider)
+	public void serialize(SystemProperties value, JsonGenerator jgen, SerializerProvider provider)
 			throws IOException, JsonProcessingException {
 		final Map<String, Object> map = new HashMap<>();
-		map.put(value.getId(), value.getValue());
+		for(ConfigValue config : value.getList()) {
+			map.put(config.getId(), config.getValue());
+		}
 		jgen.writeObject(map);
 	}
 

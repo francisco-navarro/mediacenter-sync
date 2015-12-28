@@ -2,11 +2,6 @@ package es.fnavarro.mediasync.domain;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import es.fnavarro.mediasync.domain.json.serializer.ConfigValueSerializer;
-
-
 public class ConfigValue implements Serializable{
 	
 	private String id;

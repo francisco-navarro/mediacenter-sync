@@ -14,8 +14,6 @@
                 token: '='
             },
             templateUrl: 'app/configuration/config.box.template.html',
-            // link: function(scope, element, attrs, controller, transcludeFn) {
-            // },
             controller: function($scope) {
                 var vm = this;
                 vm.submit = submit;
