@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.fnavarro</groupId>
 	<artifactId>mediacenter-server-sync</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>commodities Maven Webapp</name>
 	<url>http://maven.apache.org</url>
