@@ -1,0 +1,17 @@
+{
+  "jasmine": true,
+  "strict": false,
+  "globals": {
+    "console": true
+  },
+  "predef": [
+    "protractor",
+    "browser",
+    "by",
+    "element",
+    "it",
+    "describe",
+    "beforeEach",
+    "afterEach"
+  ]
+}
