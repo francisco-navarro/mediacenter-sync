@@ -1,8 +1,8 @@
 <form class="configValueBox" ng-submit="vm.submit()">
-    <div ng-repeat="elem in vm.config">
-        <div>{{elem.id}}</div>
+    <div ng-repeat="(key, value) in vm.config">
+        <div>{{key }}</div>
         <div>
-            <input ng-model="elem.value"></input>
+            <input ng-model="vm.config[key]"></input>
         </div>
     </div>
     <div class="saveButton">

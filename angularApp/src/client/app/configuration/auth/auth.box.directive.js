@@ -14,7 +14,7 @@
                 token: '='
             },
             transclude: true,
-            templateUrl: 'app/configuration/auth.box.template.html',
+            templateUrl: 'app/configuration/auth/auth.box.template.html',
             link: function(scope, element, attrs, controller, transcludeFn) {
                 scope.login = function() {
                     AuthService.login(scope.boxPassword)

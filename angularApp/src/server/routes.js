@@ -1,14 +1,15 @@
 var router = require('express').Router();
 var four0four = require('./utils/404')();
-
-
-
+var jsonParser = require('body-parser').json();
 ////////////// MOCKS in /api/
 // More info in https://www.npmjs.com/package/express-api-server
+router.route('/files')
+	.get(require('./mocks/files').get);
 
-var files = require('./mocks/files');
+router.route('/authSession/*')
+	.put(jsonParser, require('./mocks/auth').put);
 
-router.route('/files').get(files.get);
-
-//////////////////
+router.route('/configuration')
+	.get(require('./mocks/configuration').get);
+////
 module.exports = router;

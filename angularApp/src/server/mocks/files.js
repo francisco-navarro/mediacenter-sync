@@ -1,4 +1,4 @@
-exports.get = function(req, res, next) {
+exports.get = function(req, res) {
   var todos = {
     'info': 'infoResult'
   };
