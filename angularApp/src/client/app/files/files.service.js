@@ -6,10 +6,10 @@
         .factory('FilesService', FilesService);
 
     /* @ngInject */
-    function FilesService($http) {
+    function FilesService($http, ENDPOINTS) {
 
-        var host = '';
-        var endpoint = 'api/files/';
+
+        var endpoint = ENDPOINTS.host +'files/';
 
         return {
             find: find,
@@ -20,7 +20,7 @@
 
         function find(status) {
 
-            var uri = host + endpoint;
+            var uri = endpoint;
             if (status) {
                 uri += '?status=' + status;
             }
@@ -33,21 +33,21 @@
 
         function save(item) {
             item.status = '...';
-            return $http.put(host + endpoint + item.id, {
+            return $http.put(endpoint + item.id, {
                 status: 'DOWNLOAD'
             });
         }
 
         function discard(item) {
             item.status = '...';
-            return $http.put(host + endpoint + item.id, {
+            return $http.put(endpoint + item.id, {
                 status: 'DISCARDED'
             });
         }
 
         function reset(item) {
             item.status = '...';
-            return $http.put(host + endpoint + item.id, {
+            return $http.put(endpoint + item.id, {
                 status: 'PENDING'
             });
         }

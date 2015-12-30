@@ -8,7 +8,7 @@
     /* @ngInject */
     function configBox(ConfigurationService, toastr) {
         return {
-            restrict: 'AE',
+            restrict: 'E',
             replace: true,
             scope: {
                 token: '='
@@ -17,17 +17,17 @@
             controller: function($scope) {
                 var vm = this;
                 vm.submit = submit;
-                init();
+                activate();
 
-                function init() {
-                    ConfigurationService.get($scope.token)
-                        .then(function(values) {
+                function activate() {
+                    ConfigurationService.get($scope.token).then(function(values) {
                             vm.config = values;
                         });
                 }
 
                 function submit() {
-                    ConfigurationService.updateValues(vm.config);
+                    ConfigurationService.update($scope.token,vm.config)
+                        .then(activate);
                 }
             },
             controllerAs: 'vm'

@@ -10,9 +10,11 @@
 
         var vm = this;
 
-        init();
+        activate();
 
-        function init() {
+        ////////////
+        
+        function activate() {
             vm.authToken = undefined;
         }
 

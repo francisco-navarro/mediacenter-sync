@@ -8,3 +8,8 @@ var configuration = {
 exports.get = function(req, res) {
 	 res.json(configuration);
 }
+exports.put = function(req, res) {
+	configuration = req.body;
+	res.status(200);
+	res.json({});
+}

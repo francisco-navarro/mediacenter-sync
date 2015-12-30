@@ -9,7 +9,8 @@ router.route('/files')
 router.route('/authSession/*')
 	.put(jsonParser, require('./mocks/auth').put);
 
-router.route('/configuration')
-	.get(require('./mocks/configuration').get);
+router.route('/configuration/*')
+	.get(require('./mocks/configuration').get)
+	.put(jsonParser, require('./mocks/configuration').put);
 ////
 module.exports = router;

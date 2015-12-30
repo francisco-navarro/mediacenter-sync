@@ -6,10 +6,9 @@
         .factory('AuthService', AuthService);
 
     /* @ngInject */
-    function AuthService($http, $q) {
+    function AuthService($http, $q, ENDPOINTS) {
 
-        var host = '';
-        var endpoint = 'api/authSession/';
+        var endpoint = ENDPOINTS.host +'authSession/';
 
         return {
             login: login
@@ -20,7 +19,7 @@
             var defered = $q.defer();
             var promise = defered.promise;
 
-            $http.put(host + endpoint + password)
+            $http.put(endpoint + password)
                 .then(function(response) {
                     if (response.data.token !== undefined) {
                         defered.resolve(response.data.token);

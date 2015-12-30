@@ -6,20 +6,25 @@
         .factory('ConfigurationService', ConfigurationService);
 
     /* @ngInject */
-    function ConfigurationService($http) {
+    function ConfigurationService($http, ENDPOINTS) {
 
-        var host = '';
-        var endpoint = 'api/configuration/';
+        var endpoint = ENDPOINTS.host + 'configuration/';
 
         return {
-            get: get
+            get: get,
+            update: update
         };
 
         function get(token) {
-            return $http.get(host + endpoint + '?token=' + token)
+            return $http.get(endpoint + '?token=' + token)
                 .then(function(response) {
                     return response.data;
                 });
+        }
+
+        function update(token, config){
+            return $http.put(endpoint + '?token=' + token,
+                config);
         }
     }
 })();

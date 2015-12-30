@@ -4,7 +4,7 @@
     angular
         .module('app.core', [
             'ngAnimate', 'ngSanitize',
-            'blocks.router',
-            'ui.router', 'ngplus', 'trNgGrid'
+            'blocks.router', 'ui.router', 
+            'ngplus', 'trNgGrid'            
         ]);
 })();
