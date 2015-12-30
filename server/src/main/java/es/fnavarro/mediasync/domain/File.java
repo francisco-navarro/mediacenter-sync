@@ -59,7 +59,9 @@ public class File {
 		this.status = status;
 	}
 	
-	
+	public java.io.File getFile(){
+		return new java.io.File(path+name);
+	}
 	
 
 }

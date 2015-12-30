@@ -15,10 +15,12 @@ import es.fnavarro.mediasync.services.IFileService;
 public class FileService implements IFileService {
 	
 	private FileMapper fileMapper;
+	private DownloaderService downloaderService;
 	
 	@Autowired
-	public FileService(FileMapper fileMapper){
-		this.fileMapper =fileMapper;
+	public FileService(FileMapper fileMapper, DownloaderService downloaderService){
+		this.fileMapper = fileMapper;
+		this.downloaderService = downloaderService;
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class FileService implements IFileService {
 	@Transactional
 	public void save(File file) {		
 		changeStatus(file.getId(), "DOWNLOADING");
-	}
+		downloaderService.download(file.getName(),file.getPath());
+	} 
 
 }
