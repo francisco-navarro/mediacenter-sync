@@ -23,5 +23,9 @@ public class ConfigValue implements Serializable{
 	public void setValue(String value) {
 		this.value = value;
 	}
+	@Override
+	public String toString() {
+		return "Config [" + id + "=" + value + "]";
+	}
 	
 }

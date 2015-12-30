@@ -7,10 +7,13 @@
 		select value
 		from CONFIG
 		where id = #{property}
+		order by id
 	</select>
 	
 	<insert id="updateProperty" parameterType="map">
-		
+		update CONFIG
+		set value = #{value}
+		where id = #{property}
 	</insert>
 	
 	<update id="insertProperty" parameterType="map">

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.fnavarro.mediasync.domain.ConfigValue;
+import es.fnavarro.mediasync.domain.SystemProperties;
 import es.fnavarro.mediasync.mappers.ConfigMapper;
 import es.fnavarro.mediasync.services.ISystemPropertiesService;
 
@@ -105,5 +106,12 @@ public class SystemPropertiesService extends BaseService implements ISystemPrope
 			logger.warn("Error fetching properties ",e);
 		}
 		return list;
+	}
+
+	public void updateValues(SystemProperties properties) {
+		for(ConfigValue config : properties.getList()){
+			configMapper.updateProperty(config.getId(), config.getValue());
+		}
+		initProperties();
 	}
 }

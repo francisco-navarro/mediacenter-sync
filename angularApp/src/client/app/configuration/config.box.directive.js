@@ -21,15 +21,17 @@
 
                 function activate() {
                     ConfigurationService.get($scope.token).then(function(values) {
-                            vm.config = values;
-                        });
+                        vm.config = values;
+                    });
                 }
 
                 function submit() {
-                    ConfigurationService.update($scope.token,vm.config)
-                        .then(function(){
+                    ConfigurationService.update($scope.token, vm.config)
+                        .then(function() {
                             activate();
                             toastr.info('Changes saved');
+                        }).catch(function() {
+                            toastr.error('Error saving changes');
                         });
                 }
             },
