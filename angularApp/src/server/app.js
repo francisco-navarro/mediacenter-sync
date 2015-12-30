@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-app.use('/api', require('./routes'));
+
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
@@ -38,6 +38,7 @@ switch (environment) {
         break;
     default:
         console.log('** DEV **');
+        app.use('/api', require('./routes'));
         app.use(express.static('./src/client/'));
         app.use(express.static('./'));
         app.use(express.static('./tmp'));

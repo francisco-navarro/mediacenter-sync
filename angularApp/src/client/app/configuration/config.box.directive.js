@@ -27,7 +27,10 @@
 
                 function submit() {
                     ConfigurationService.update($scope.token,vm.config)
-                        .then(activate);
+                        .then(function(){
+                            activate();
+                            toastr.info('Changes saved');
+                        });
                 }
             },
             controllerAs: 'vm'
