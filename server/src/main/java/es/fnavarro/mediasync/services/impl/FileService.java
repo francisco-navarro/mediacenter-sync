@@ -40,6 +40,10 @@ public class FileService implements IFileService {
 	public void changeName(long id, String name) {
 		
 	}
-	
+
+	@Transactional
+	public void save(File file) {		
+		changeStatus(file.getId(), "DOWNLOADING");
+	}
 
 }

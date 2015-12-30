@@ -14,6 +14,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -25,6 +26,7 @@ import es.fnavarro.mediasync.services.impl.BaseService;
 
 @MapperScan(basePackageClasses = { MapperBase.class } )
 @ComponentScan(basePackageClasses = {BaseController.class, BaseService.class})
+@EnableScheduling
 @EnableWebMvc
 public class AppConfig extends WebMvcConfigurationSupport {
 	
