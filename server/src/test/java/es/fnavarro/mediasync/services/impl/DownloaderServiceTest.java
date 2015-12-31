@@ -33,21 +33,26 @@ public class DownloaderServiceTest {
 	public void givenFileWhenUploadThenCreateInRemote() throws IOException{
 		//Arrange
 		String filename = "textfile.txt";
-		File localPath = new File(".");
+		String localPath = new File(".").getAbsolutePath().replace(".","");
 		File file = createFile(localPath, filename);
 		//Act
-		downloaderService.download(filename, localPath.getAbsolutePath());
+		downloaderService.download(filename, localPath);
 	}
 
-	private File createFile(File localPath, String filename) throws IOException {
-		File file = new File(localPath.getAbsolutePath().replace(".", filename));
+	private File createFile(String localPath, String filename) throws IOException {
+		File file = new File(localPath + filename);
 		if(!file.exists()){
 			file.createNewFile();
 		}
-		FileWriter fw = new FileWriter(file);		
-//		for(char c : )
-//			System.out.print(c); //prints the characters one by one
-//		fr.close();
+		writeString(file,"some text");
 		return file;
+	}
+
+	private void writeString(File file, String str) throws IOException {
+		FileWriter fw = new FileWriter(file);		
+		for(byte c : str.getBytes()){
+			fw.write(c);
+		}
+		fw.close();
 	}
 }

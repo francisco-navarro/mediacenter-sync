@@ -1,7 +1,6 @@
 package es.fnavarro.mediasync.services.impl;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.Properties;
 
 import org.apache.commons.vfs2.FileObject;
@@ -11,6 +10,12 @@ import org.apache.commons.vfs2.impl.StandardFileSystemManager;
 import org.apache.commons.vfs2.provider.sftp.SftpFileSystemConfigBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpProgressMonitor;
 
 import es.fnavarro.mediasync.services.IDownloaderService;
 
@@ -27,9 +32,71 @@ public class DownloaderService extends BaseService implements IDownloaderService
 
 	@Override
 	public void download(String name, String path) {
-		startFTP(name, path);
+		//startFTP(name, path);
+		startJSch(name, path);
 	}
 
+
+	private void startJSch(String name, String path) {
+		try{
+			String serverAddress = systemPropertiesService.getRemoteIp();
+			String userId = systemPropertiesService.getRemoteUser();
+			String password = systemPropertiesService.getRemotePassword();
+			String remoteDirectory = systemPropertiesService.getRemotePath();
+			
+			JSch jsch=new JSch();
+			
+			
+		    Session session=jsch.getSession(userId, serverAddress, 22);
+		    session.setPassword(password);
+		    session.setConfig(getConfig());
+		    
+		    
+		    session.connect();
+			
+		    Channel channel=session.openChannel("sftp");
+		    channel.connect();
+		    ChannelSftp c=(ChannelSftp)channel;
+		    
+		    SftpProgressMonitor monitor = new SystemOutProgressMonitor();
+			c.put(path+name,remoteDirectory + name, monitor , ChannelSftp.OVERWRITE);
+			
+		    c.disconnect();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public class SystemOutProgressMonitor implements SftpProgressMonitor
+	{
+	    public SystemOutProgressMonitor() {;}
+
+	    public void init(int op, java.lang.String src, java.lang.String dest, long max) 
+	    {
+	        System.out.println("STARTING: "+op+" "+src+" -> "+dest+" total: "+max);
+	    }
+
+	    public boolean count(long bytes)
+	    {
+	        for(int x=0;x<bytes;x++) {
+	            System.out.print("#");
+	        }
+	        return(true);
+	    }
+
+	    public void end()
+	    {
+	        System.out.println("\nFINISHED!");
+	    }
+	}
+
+	private Properties getConfig() {
+		Properties config = new java.util.Properties(); 
+		config.put("StrictHostKeyChecking", "no");
+		return config;
+	}
+	
+	
 
 	public boolean startFTP(String name, String path){
 
