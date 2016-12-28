@@ -1,5 +1,7 @@
 # mediaserver web app
 
+Tool to sync drives with raspberry pi in AngularJS 1.4
+
 ### Linting
  - Run code analysis using `gulp vet`. This runs jshint, jscs, and plato.
 
